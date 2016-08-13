@@ -1,0 +1,51 @@
+{% extends "template/default.html" %}
+
+{% block content %}
+<div class="col-sm-6">
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>{{ include(template_from_string(lang.edit)) }}</h4>
+		</div>
+		<div class="panel-body">
+			<div class="col-sm-12">
+				<form class="form form-vertical" method="post">
+					{% set disable_username_field = true %}
+					{% set disable_password_field = true %}
+					{{ include('partials/form_user.html') }}
+					<div class="control-group">
+						<label></label>
+						<div class="controls">
+							<input type="submit" class="btn btn-primary " name="submit_edit" value="{{ include(template_from_string(lang.update)) }}" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>{{ include(template_from_string(lang.change_password)) }}</h4>
+		</div>
+		<div class="panel-body">
+			<div class="col-sm-12">
+				<form class="form form-vertical" method="post">
+					{% set disable_username_field = true %}
+					{% set disable_name_field = true %}
+					{% set disable_email_field = true %}
+					{% set disable_password_field = false %}
+					{{ include('partials/form_user.html') }}
+					<div class="control-group">
+						<label></label>
+						<div class="controls">
+							<input type="submit" class="btn btn-primary " name="submit_change_password" value="{{ include(template_from_string(lang.update)) }}" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</div>
+{% endblock %}

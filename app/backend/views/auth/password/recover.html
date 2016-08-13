@@ -1,0 +1,49 @@
+{% extends "template/default.html" %}
+
+{% block title %}
+{{ include(template_from_string(lang.password_recovery)) }}
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block sidebar_nav %}
+{% endblock %}
+
+{% block top_nav %}
+{% endblock %}
+
+{% block content %}
+<div class="col-sm-6">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>{{ include(template_from_string(lang.password_recovery)) }}</h4>
+		</div>
+		<div class="panel-body">
+			<div class="col-sm-12">
+				<p>{{ include(template_from_string(lang.password_recover_info)) }}</p>
+				<form action="{{ urlFor('password.recover.post')}}" method="post">
+					<div class="control-group">
+						<div class="controls {% if errors.email %}has-error{% endif %}">
+							<input type="text" name="email" id="email" class="form-control"
+								   value="{{ request.post('email') }}"/>
+							{% if errors.email %}
+							<label for="email" class="control-label" >{{ errors.email }}</label>
+							{% endif %}
+						</div>
+					</div>
+					<br/>
+					<div class="control-group">
+						<div class="controls">
+							<input type="submit" class="btn btn-primary" value="{{ include(template_from_string(lang.password_request_reset)) }}"/>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

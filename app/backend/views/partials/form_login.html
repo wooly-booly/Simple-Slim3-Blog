@@ -1,0 +1,40 @@
+<form action="{{ path_for('login') }}" method="post" autocomplete="off">
+	<div class="control-group">
+		<label for="identifier" >{{ include(template_from_string(lang.identifier)) }}</label>
+
+		<div class="controls {% if errors.identifier %}has-error{% endif %}">
+			<input type="text" name="identifier" id="identifier" class="form-control"
+				   value="{{ request.post('identifier') }}" autocomplete="off"/>
+			{% if errors.identifier %}
+				<label for="identifier" class="control-label" >{{ errors.identifier }}</label>
+			{% endif %}
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="password">{{ include(template_from_string(lang.password)) }}</label>
+
+		<div  class="controls {% if errors.password %}has-error{% endif %}">
+			<input type="password" name="password" id="password" class="form-control" autocomplete="off"/>
+			{% if errors.password %}
+				<label for="password" class="control-label" >{{ errors.password }}</label>
+			{% endif %}
+		</div>
+	</div>
+<!-- 	<div class="control-group">
+		<div class="controls">
+			<input type="checkbox" name="remember" id="remember">
+			<label for="remember">{{ include(template_from_string(lang.remember_me)) }}</label>
+		</div>
+	</div> -->
+	<br/>
+
+	<div class="control-group">
+		<div class="controls">
+			<input type="submit" class="btn btn-primary" value="Login"/>
+		</div>
+	</div>
+
+	<br/>
+<!-- 	<a href="{{ path_for('password.recover')}}">{{ include(template_from_string(lang.forgot_password)) }}</a> -->
+	{{ csrf.field | raw }}
+</form>

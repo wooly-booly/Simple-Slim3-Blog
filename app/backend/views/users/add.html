@@ -1,0 +1,24 @@
+{% extends "template/default.html" %}
+ 
+{% block content %}
+<div class="col-sm-6">  
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>{{ include(template_from_string(lang.user_add_title)) }}</h4>
+        </div>
+        <div class="panel-body">  
+            <div class="col-sm-12"> 
+                <form class="form form-vertical" method="post">
+                    {{ include('partials/form_user.html') }}
+                    <div class="control-group">
+                        <label></label>
+                        <div class="controls">
+                            <input type="submit" class="btn btn-primary " name="submit" value="{{ include(template_from_string(lang.create)) }}" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

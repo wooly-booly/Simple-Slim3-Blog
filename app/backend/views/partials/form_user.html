@@ -1,0 +1,78 @@
+<!-- Form -->
+{% if disable_username_field != true %}
+<div class="control-group">
+    <label for="username" >{{ include(template_from_string(lang.username)) }} *</label>
+
+    <div class="controls {% if errors.username %}has-error{% endif %}">
+        <input type="text" name="username" id="username" class="form-control"
+               value="{{ user.username }}"/>
+        {% if errors.username %}
+        <label for="username" class="control-label" >{{ errors.username }}</label>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+{% if disable_name_field != true %}
+<div class="control-group">
+    <label for="first_name">{{ include(template_from_string(lang.first_name)) }}</label>
+
+    <div class="controls {% if errors.first_name %}has-error{% endif %}">
+        <input type="text" name="first_name" id="first_name" class="form-control"
+               value="{{ user.first_name }}"/>
+        {% if errors.first_name %}
+        <label for="first_name" class="control-label" >{{ errors.first_name }}</label>
+        {% endif %}
+    </div>
+</div>
+<div class="control-group">
+    <label for="last_name">{{ include(template_from_string(lang.last_name)) }}</label>
+
+    <div class="controls {% if errors.last_name %}has-error{% endif %}">
+        <input type="text" name="last_name" id="last_name" class="form-control"
+               value="{{ user.last_name }}"/>
+        {% if errors.last_name %}
+        <label for="last_name" class="control-label" >{{ errors.last_name }}</label>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+{% if disable_email_field != true %}
+<div class="control-group">
+    <label for="email">{{ include(template_from_string(lang.email)) }} *</label>
+
+    <div class="controls {% if errors.email %}has-error{% endif %}">
+        <input type="text" name="email" id="email" class="form-control"
+               value="{{ user.email }}"/>
+        {% if errors.email %}
+        <label for="email" class="control-label" >{{ errors.email }}</label>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+{% if disable_password_field != true %}
+<div class="control-group">
+    <label for="password">{{ include(template_from_string(lang.password)) }} *</label>
+
+    <div  class="controls {% if errors.password %}has-error{% endif %}">
+        <input type="password" name="password" id="password" class="form-control"/>
+        {% if errors.password %}
+        <label for="password" class="control-label" >{{ errors.password }}</label>
+        {% endif %}
+    </div>
+</div>
+<div class="control-group">
+    <label for="confirm_password">{{ include(template_from_string(lang.confirm_password)) }} *</label>
+
+    <div  class="controls {% if errors.confirm_password %}has-error{% endif %}">
+        <input type="password" name="confirm_password" id="confirm_password" class="form-control"/>
+        {% if errors.confirm_password %}
+        <label for="confirm_password" class="control-label" >{{ errors.confirm_password }}</label>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+{{ csrf.field | raw }}

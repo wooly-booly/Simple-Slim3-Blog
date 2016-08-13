@@ -1,0 +1,40 @@
+{% extends "template/default.html" %}
+ 
+{% block content %}
+<div class="col-sm-12">  
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>{{ include(template_from_string(lang.posts)) }}</h4>
+		</div>
+		<div class="panel-body">  
+			<div class="col-sm-12"> 
+				<form class="form form-vertical" method="post" enctype="multipart/form-data">
+					{{ include('partials/form_post.html') }}
+					<div class="control-group">
+						<label></label>
+						<div class="controls">
+							<input type="submit" class="btn btn-primary " name="submit" value="{{ include(template_from_string(lang.edit)) }}" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+	<link href="{{ base_url() }}/backend/js/summernote-0.6.7/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="{{ base_url() }}/backend/js/summernote-0.6.7/summernote.css" rel="stylesheet" type="text/css">
+	<script src="{{ base_url() }}/backend/js/summernote-0.6.7/summernote.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#desc').summernote({
+				height: 150
+			});
+			$('#content').summernote({
+				height: 300
+			});
+		});
+	</script>
+{% endblock %}

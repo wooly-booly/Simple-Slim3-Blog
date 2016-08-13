@@ -1,0 +1,59 @@
+{% extends "template/default.html" %}
+
+{% block title %}
+{{ include(template_from_string(lang.password_reset)) }}
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block sidebar_nav %}
+{% endblock %}
+
+{% block top_nav %}
+{% endblock %}
+
+{% block content %}
+<div class="col-sm-6">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>{{ include(template_from_string(lang.password_reset)) }}</h4>
+		</div>
+		<div class="panel-body">
+			<div class="col-sm-12">
+				<form action="{{ urlFor('password.reset.post') }}?email={{ email }}&identifier={{ identifier|url_encode }}" method="post" autocomplete="off">
+					<div class="control-group">
+						<label for="password">{{ include(template_from_string(lang.password)) }}</label>
+						<div class="controls {% if errors.password %}has-error{% endif %}">
+							<input type="password" name="password" id="password" class="form-control"
+								   value="{{ request.post('password') }}"/>
+							{% if errors.password %}
+							<label for="password" class="control-label" >{{ errors.password }}</label>
+							{% endif %}
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="confirm_password">{{ include(template_from_string(lang.confirm_password)) }}</label>
+						<div class="controls {% if errors.confirm_password %}has-error{% endif %}">
+							<input type="password" name="confirm_password" id="confirm_password" class="form-control"
+								   value="{{ request.post('confirm_password') }}"/>
+							{% if errors.confirm_password%}
+							<label for="confirm_password" class="control-label" >{{ errors.confirm_password}}</label>
+							{% endif %}
+						</div>
+					</div>
+					<br/>
+					<div class="control-group">
+						<div class="controls">
+							<input type="submit" class="btn btn-primary" value="{{ include(template_from_string(lang.change_password)) }}"/>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

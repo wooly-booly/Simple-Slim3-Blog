@@ -1,0 +1,49 @@
+<!-- Form -->
+<div class="control-group">
+	<label>{{ include(template_from_string(lang.title)) }}</label>
+	<div class="controls">
+		<input type="text" name="title"  class="form-control" value="{{ post.title }}" >
+	</div>
+</div>
+<div class="control-group">
+	<label>{{ include(template_from_string(lang.description)) }}</label>
+	<div class="controls">
+		<textarea name="desc" id="desc" rows='5' class="form-control">{{ post.desc }}</textarea>
+	</div>
+</div>
+<div class="control-group">
+	<label>{{ include(template_from_string(lang.content)) }}</label>
+	<div class="controls">
+		<textarea name="content" id="content" rows='10' class="form-control">{{ post.content }}</textarea>
+	</div>
+</div>
+<div class="control-group">
+	<label>{{ include(template_from_string(lang.image)) }}</label>
+	<div class="controls">
+		<input type='file' name='img'>
+	</div>
+</div>
+<div class="control-group">
+	<label>{{ include(template_from_string(lang.parent_category)) }}</label>
+	<div class="controls">
+		<select name="category_id" class="form-control">
+			<option value="0" selected>-- {{ include(template_from_string(lang.empty)) }} --</option>
+			{% for parent in parents %}
+			<option value="{{ parent.id }}" {% if parent.id == post.category_id %}selected{% endif %} >
+				{{ parent.name|raw }}
+			</option>
+			{% endfor %}
+		</select>
+	</div>
+</div>
+<div class="control-group">
+	<label>{{ include(template_from_string(lang.state)) }}</label>
+	<div class="controls">
+		<select name="state" class="form-control">
+			<option value="0" {% if post.state == 0 %}selected{% endif %} >{{ include(template_from_string(lang.not_active)) }}</option>
+			<option value="1" {% if post.state == 1 %}selected{% endif %} >{{ include(template_from_string(lang.active)) }}</option>
+		</select>
+	</div>
+</div>
+{{ csrf.field | raw }}
+

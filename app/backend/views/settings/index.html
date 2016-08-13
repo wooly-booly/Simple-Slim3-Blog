@@ -1,0 +1,64 @@
+{% extends "template/default.html" %}
+ 
+{% block content %}
+<div class="col-sm-6">  
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>{{ include(template_from_string(lang.settings)) }}</h4>
+        </div>
+        <div class="panel-body">  
+            <div class="col-sm-12"> 
+                <!-- Form -->
+                <form class="form form-vertical" method="post" action="{{ path_for('settings.update') }}">
+                    
+                    <div class="control-group">
+                        <label>{{ include(template_from_string(lang.title)) }}</label>
+                        <div class="controls">
+                            <input type="text" name="title"  class="form-control" value="{{ settings.title }}" >
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label>{{ include(template_from_string(lang.select_template)) }}</label>
+                        <div class="controls">
+                            <select name="template" class="form-control">
+                              {% for template in templates %}
+                                  <option value="{{ template }}" {% if settings.template == template %}selected{% endif %}>
+                                    {{ template }}
+                                  </option>
+                              {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label>{{ include(template_from_string(lang.post_per_page)) }}</label>
+                        <div class="controls">
+                            <input type="text" name="post_per_page"  class="form-control" value="{{ settings.post_per_page }}" >
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label>{{ include(template_from_string(lang.select_language)) }}</label>
+                        <div class="controls">
+                            <select name="language" class="form-control">
+                                {% for language in languages %}
+                                  <option value="{{ language }}" {% if settings.language == language %}selected{% endif %}>
+                                    {{ language }}
+                                  </option>
+                              {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label></label>
+                        <div class="controls">
+                            <input type="submit" class="btn btn-primary " name="submit" value="{{ include(template_from_string(lang.save)) }}" />
+                        </div>
+                    </div>
+                    {{ csrf.field | raw }}
+                </form>
+                <!-- /Form -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

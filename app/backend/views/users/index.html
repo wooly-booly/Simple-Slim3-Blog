@@ -1,0 +1,52 @@
+{% extends "template/default.html" %}
+ 
+{% block content %}
+<div class="col-sm-12">  
+	<div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>{{ include(template_from_string(lang.users)) }}</h4>
+        </div>
+        <div class="panel-body">
+        	<form action="{{ path_for('users.delete') }}" method='post' id="form">
+				<p>
+					<a href="{{ path_for('users.add') }}" class="btn btn-info">{{ include(template_from_string(lang.add)) }}</a>
+					<button type='submit' id='delete' class="btn btn-info" />{{ include(template_from_string(lang.delete)) }}</button>
+				</p>
+
+				<table class="table table-hover table-striped table-bordered responsive">
+					<thead>
+						<tr>
+							<th></th>					
+							<th>{{ include(template_from_string(lang.username)) }}</th>
+							<th>{{ include(template_from_string(lang.created_at)) }}</th>
+							<th>{{ include(template_from_string(lang.email)) }}</th>
+							<th>{{ include(template_from_string(lang.action)) }}</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for user in users %}
+						<tr>
+							<td class="text-center">
+								<input type="checkbox" name="users[]" value="{{ user.id }}" />
+							</td>
+							<td>
+								{{user.username}}
+							</td>
+							<td>
+								{{user.created_at}}
+							</td>
+							<td>
+								{{user.email}}
+							</td>
+							<td>
+								<a href="{{ path_for('users.edit', {'id':user.id}) }}">{{ include(template_from_string(lang.edit)) }}</a>
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</form>
+        </div>
+    </div>
+</div>
+{% endblock %}

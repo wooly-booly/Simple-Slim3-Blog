@@ -1,0 +1,33 @@
+<!-- Form -->
+<div class="control-group">
+    <label>{{ include(template_from_string(lang.title)) }}</label>
+    <div class="controls">
+        <input type="text" name="title"  class="form-control" value="{{ category.title }}" />
+    </div>
+</div>
+<div class="control-group">
+    <label>{{ include(template_from_string(lang.description)) }}</label>
+    <div class="controls">
+        <textarea name="desc" rows='5' class="form-control">{{ category.desc }}</textarea>
+    </div>
+</div>
+<div class="control-group">
+    <label>{{ include(template_from_string(lang.position)) }}</label>
+    <div class="controls">
+        <input type="text" name="position" class="form-control" value="{{ category.position }}" />
+    </div>
+</div>
+<div class="control-group">
+    <label>{{ include(template_from_string(lang.parent_category)) }}</label>
+    <div class="controls">
+        <select name="parent_id" class="form-control">
+            <option value="0" selected>-- {{ include(template_from_string(lang.empty)) }} --</option>
+            {% for parent in parents %}
+            <option value="{{ parent.id }}" {% if parent.id == category.parent_id %}selected{% endif %} >
+                {{ parent.name|raw }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+{{ csrf.field | raw }}
