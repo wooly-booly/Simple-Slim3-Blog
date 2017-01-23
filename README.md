@@ -3,4 +3,5 @@ Simple PHP blog. Based on Slim 3 Framework, Eloquent ORM and Twig template engin
 
 http://localhost/admin (username/password)
 
-Only the Admin panel is now available. In Progress...
+Only the Admin panel is now available. 
+Frontend to your liking...
